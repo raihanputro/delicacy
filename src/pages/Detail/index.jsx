@@ -13,13 +13,12 @@ const Detail = () => {
     const [meal, setMeal] = useState([]);
     const [moreRecipies, setMoreRecipies] = useState([]);
     const [favorite, setFavorite] = useState([]);
+    const [isFav, setIsFav] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         fetchMeal();
         fetchFavorites();
-        postFavorites();
-        deleteFavorites();
       }, [id]);
 
     const fetchMeal = async() => {
@@ -46,24 +45,40 @@ const Detail = () => {
     };
 
     const fetchFavorites = async() => {
-        const response = await callApiFavorites(`/${meal?.idMeal}`, 'GET');
+        try {
+            const response = await callApiFavorites(``, 'GET');
+            setFavorite(response);
 
-       setFavorite(response)
+            const favId = response.map((item) => {
+                return item.id
+            });
+
+            const favCheck = favId.includes(id);
+
+            setIsFav(favCheck);
+
+        } catch(error) {
+            console.log(error)
+        }
     }
 
     const postFavorites = async() => {
-        const response = await callApiFavorites('', 'POST', {id: meal.idMeal, mealName: meal.strMeal, mealImg: meal.strMealThumb});
-         
-        console.log(response, "<<post fav")
+        try {
+            const response = await callApiFavorites('', 'POST', {id: meal.idMeal, mealName: meal.strMeal, mealImg: meal.strMealThumb});
+            fetchFavorites();
+        } catch(error) {
+            console.log(error)
+        }
     }
 
-    const deleteFavorites = async() => {
-        const response = await callApiFavorites('', 'DELETE', {id: meal.idMeal, mealName: meal.strMeal, mealImg: meal.strMealThumb});
-         
-        console.log(response, "<<post fav")
+    const deleteFavorites = async(id) => {
+        try {
+            const response = await callApiFavorites(`/${id}`, 'DELETE');
+            fetchFavorites()
+        } catch(error) {
+            console.log(error)
+        }
     }
-
-    console.log(favorite.id, "<<>>>>>")
 
   return (
     <>
@@ -108,7 +123,7 @@ const Detail = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <Button variant='outlined' className={classes.mealButton} onClick={() => {favorite?.id !== meal?.idMeal ? postFavorites() : deleteFavorites()} }>{favorite?.id === meal?.idMeal ?  'Remove Favorite' : 'Add to Favorites'}</Button>
+                                <Button variant='outlined' className={classes.mealButton} onClick={() => {isFav ?  deleteFavorites(meal?.idMeal) : postFavorites()} }>{isFav ?  'Remove Favorite' : 'Add to Favorites'}</Button>
                             </div>
                         </div>
                         <img src={meal.strMealThumb} className={classes.mealImg}/>

@@ -8,21 +8,16 @@ import { callApi, callApiFavorites } from '../../domain/api';
 
 const Favorite = () => {
   const navigate = useNavigate();
-  const [favorite, setFavorite] = useState([]);
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState("Favorite");
+  const [favorite, setFavorite] = useState([]);
+  const [isFav, setIsFav] = useState(false);
 
 
   useEffect(() => {
     fetchFavorites();
     fetchCategories();
   }, [favorite]);
-
-  const fetchFavorites = async() => {
-    const response = await callApiFavorites(``, 'GET');
-
-   setFavorite(response)
-  }
 
   const fetchCategories = async() => {
     const response = await callApi(`/categories.php`, 'GET');
@@ -38,6 +33,26 @@ const Favorite = () => {
     setActiveCategory(value);
   }
 
+  const fetchFavorites = async() => {
+    try {
+        const response = await callApiFavorites(``, 'GET');
+        setFavorite(response);
+
+    } catch(error) {
+        console.log(error)
+    }
+}
+
+
+const deleteFavorites = async(id) => {
+    try {
+        const response = await callApiFavorites(`/${id}`, 'DELETE');
+        fetchFavorites()
+    } catch(error) {
+        console.log(error)
+    }
+}
+
 
   return (
     <div className={classes.container}>
@@ -50,10 +65,10 @@ const Favorite = () => {
         </div>
       <div className={classes.favContainer}>
             {favorite && favorite.map((fav, index) => (
-              <div key={index} className={classes.favCard} onClick={()=>navigate(`../detail/${fav?.id.toLowerCase()}`)}>
+              <div key={index} className={classes.favCard} >
                   <img src={fav.mealImg} />
                   <p>{fav.mealName}</p>
-                  <Button variant='outlined' className={classes.favButton}>Remove Favorite</Button>
+                  <Button variant='outlined' className={classes.favButton} onClick={() => deleteFavorites(fav?.id)}>Remove Favorite</Button>
               </div>
             ))}
           </div>

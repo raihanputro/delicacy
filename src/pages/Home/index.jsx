@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 
 import Navbar from '../../components/Navbar/index'
-import { callApi } from '../../domain/api'
+import { callApi, callApiFavorites } from '../../domain/api'
 
 import classes from './style.module.scss'
 
@@ -14,9 +14,12 @@ const Home = () => {
   const [activeCategory, setActiveCategory] = useState("Beef");
   const [categories, setCategories] = useState([]);
   const [moreRecipies, setMoreRecipies] = useState([]);
+  const [favorite, setFavorite] = useState([]);
+  const [isFav, setIsFav] = useState(false);
 
   useEffect(() => {
     fetchMeals();
+    fetchFavorites();
     fetchCategories();
   }, [activeCategory]);
 
@@ -63,8 +66,41 @@ const Home = () => {
     setActiveCategory(value);
   }
 
-  console.log(activeCategory)
-  console.log(moreRecipies)
+  const fetchFavorites = async() => {
+    try {
+        const response = await callApiFavorites(``, 'GET');
+        setFavorite(response);
+
+        const favId = response.map((item) => {
+            return item.id
+        });
+
+        const favCheck = favId.includes(meals?.idMeal);
+
+        setIsFav(favCheck);
+
+    } catch(error) {
+        console.log(error)
+    }
+}
+
+const postFavorites = async() => {
+    try {
+        const response = await callApiFavorites('', 'POST', {id: meals.idMeal, mealName: meals.strMeal, mealImg: meals.strMealThumb});
+        fetchFavorites();
+    } catch(error) {
+        console.log(error)
+    }
+}
+
+const deleteFavorites = async(id) => {
+    try {
+        const response = await callApiFavorites(`/${id}`, 'DELETE');
+        fetchFavorites()
+    } catch(error) {
+        console.log(error)
+    }
+}
 
   return (
     <div className={classes.container}>
@@ -117,7 +153,7 @@ const Home = () => {
                         </div>
                         <div className={classes.mealButton}>
                           <Button variant='outlined' onClick={()=>navigate(`../detail/${meal?.idMeal.toLowerCase()}`)} className={classes.mealButtonAdd}>Detail</Button>
-                          <Button variant='outlined' className={classes.favButton}>Remove Favorite</Button>
+                          <Button variant='outlined' className={classes.favButton} onClick={() => {isFav ?  deleteFavorites(meal?.idMeal) : postFavorites()} }>{isFav ?  'Remove Favorite' : 'Add to Favorites'}</Button>
                         </div>
                   </div>
               </div>
