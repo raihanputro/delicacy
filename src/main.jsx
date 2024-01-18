@@ -2,9 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-import Home from './pages/Home/Home.jsx'
-import Detail from './pages/Detail/Detail.jsx'
-import Favorite from './pages/Favorite/Favorite.jsx'
+import Home from './pages/Home/index.jsx'
+import Detail from './pages/Detail/index.jsx'
+import Favorite from './pages/Favorite/index.jsx'
 
 const router = createBrowserRouter([
   {

@@ -1,0 +1,22 @@
+{
+  "favorites": [
+    {
+      "id": "52902",
+      "name": "Beef Bwfweourguignone"
+    },
+    {
+      "id": "52904",
+      "mealName": "Beef Bourguignon"
+    },
+    {
+      "id": "53053",
+      "mealName": "Beef Rendang",
+      "mealImg": "https://www.themealdb.com/images/media/meals/bc8v651619789840.jpg"
+    },
+    {
+      "id": "53053",
+      "mealName": "Beef Rendang",
+      "mealImg": "https://www.themealdb.com/images/media/meals/bc8v651619789840.jpg"
+    }
+  ]
+}

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 
-import Navbar from '../../components/Navbar/Navbar'
+import Navbar from '../../components/Navbar/index'
 import { callApi } from '../../domain/api'
 
 import classes from './style.module.scss'
@@ -74,7 +74,7 @@ const Home = () => {
           {categories && categories.map((category, index) => (
             <Button variant='p' key={index} onClick={() => handleActive(category.nameCategory)} className={activeCategory === category.nameCategory ? classes.activeCategory : classes.nonActiveCategory}>{category.nameCategory}</Button>
           ))}
-          <Button variant='p'>Favorite</Button>
+          <Button variant='p' onClick={() => {handleActive('Favorite'), navigate(`../favorite`)}} className={activeCategory === "Favorite" ? classes.activeCategory : classes.nonActiveCategory}>Favorite</Button>
         </div>
         <div className={classes.cardContainer}>
         {meals && meals.map((meal, index) => (
