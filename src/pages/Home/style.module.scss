@@ -50,6 +50,7 @@
             height: 100%;
             min-width: 623.7px;
             min-height: 550px;
+            box-shadow: 0px 2.158px 5.395px 0px rgba(0, 0, 0, 0.15);
     
             .mealDesc {
                 color: $color-grey;
@@ -189,6 +190,7 @@
                 align-items: center;
                 position: relative;
                 cursor: pointer;
+                box-shadow: 0px 2.158px 5.395px 0px rgba(0, 0, 0, 0.15);
 
                 img {
                     width: 96.04px;
