@@ -4,11 +4,11 @@
     @include container;
 
     .menuItem {
-        width: 100%;
+        width: 90%;
         display: flex;
         flex-direction: row;
         gap: 40px;
-        margin-left: 7%;
+        margin-left: 5%;
         margin-top: 2%;
 
         .activeCategory {
@@ -17,6 +17,51 @@
 
         .nonActiveCategory {
             color: grey;
+        }
+    }
+
+    .favContainer {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 100px;
+        margin-top: 5%;
+        margin-left: 5%;
+
+        .favCard {
+            width: 221px;
+            height: 172.28px;
+            border: 5px solid white;
+            border-radius: 7.03px;
+            margin-top: 3%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+
+            img {
+                width: 96.04px;
+                height: 96.04px;
+                left: 25%;
+                bottom: 75%;
+                position: absolute;
+                border-radius: 50%;
+            }
+
+            p {
+                font-family: $font-roboto;
+                font-weight: 500;
+                font-size: 15.11px;
+                margin-top: 5%;
+            }
+
+            .favButton {
+                margin-top: 5%;
+            }
         }
     }
 }

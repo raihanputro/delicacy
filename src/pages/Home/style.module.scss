@@ -30,7 +30,7 @@
         justify-content: center;
         align-items: center;
         overflow: auto;
-        width: 100%;
+        width: 90%;
         margin-left: 5%;
         height: 100%;
         -ms-overflow-style: none; /* IE and Edge */
@@ -42,7 +42,6 @@
             position: relative;
             background-color: $color-light-blue;
             border: 5px solid white;
-            cursor: pointer;
             border-radius: 19.42px;
             padding: 20px;
             margin-top: 2%;
@@ -129,6 +128,17 @@
                                     color: $color-light-grey;
                                 }
                             }
+                        }
+                    }
+
+                    .mealButton {
+                        margin-top: 4%;
+                        display: flex;
+                        flex-direction: row;
+                        gap: 70px;
+
+                        .mealButtonAdd {
+                            width: 124.86px;
                         }
                     }
                 }

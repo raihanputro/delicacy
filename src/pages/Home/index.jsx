@@ -56,7 +56,6 @@ const Home = () => {
         nameCategory: item.strCategory,
       }
     });
-
     setCategories(modifiedData.slice(0, 6));
   }
 
@@ -78,7 +77,7 @@ const Home = () => {
         </div>
         <div className={classes.cardContainer}>
         {meals && meals.map((meal, index) => (
-            <div key={index}  className={classes.card} onClick={()=>navigate(`../detail/${meal?.idMeal.toLowerCase()}`)}>
+            <div key={index}  className={classes.card}>
                 <div className={classes.mealDesc}>
                     <div className={classes.mealIntro}>
                         <h1 className={classes.mealName}>{meal?.strMeal}</h1>
@@ -115,6 +114,10 @@ const Home = () => {
                                     <p>{meal?.strMeasure4}</p>
                                 </div>
                             </div>
+                        </div>
+                        <div className={classes.mealButton}>
+                          <Button variant='outlined' onClick={()=>navigate(`../detail/${meal?.idMeal.toLowerCase()}`)} className={classes.mealButtonAdd}>Detail</Button>
+                          <Button variant='outlined' className={classes.favButton}>Remove Favorite</Button>
                         </div>
                   </div>
               </div>

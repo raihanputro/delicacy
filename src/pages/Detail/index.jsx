@@ -18,6 +18,8 @@ const Detail = () => {
     useEffect(() => {
         fetchMeal();
         fetchFavorites();
+        postFavorites();
+        deleteFavorites();
       }, [id]);
 
     const fetchMeal = async() => {
@@ -106,7 +108,7 @@ const Detail = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <Button variant='p' onClick={() => {favorite?.id !== meal?.idMeal ? postFavorites() : deleteFavorites()} }>{favorite?.id === meal?.idMeal ?  'Remove Favorite' : 'Add to Favorites'}</Button>
+                                <Button variant='outlined' className={classes.mealButton} onClick={() => {favorite?.id !== meal?.idMeal ? postFavorites() : deleteFavorites()} }>{favorite?.id === meal?.idMeal ?  'Remove Favorite' : 'Add to Favorites'}</Button>
                             </div>
                         </div>
                         <img src={meal.strMealThumb} className={classes.mealImg}/>
