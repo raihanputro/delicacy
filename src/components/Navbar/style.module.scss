@@ -1,0 +1,12 @@
+@import '../../styles/base.scss';
+
+.header {
+    cursor: pointer;
+    .header-title {
+        font-family: $font-archivo;
+        font-weight: bolder;
+        cursor: pointer;
+    }
+
+}
+

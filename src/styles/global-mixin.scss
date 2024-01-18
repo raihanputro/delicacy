@@ -1,0 +1,23 @@
+@mixin flexRow {
+    display: flex;
+    flex-direction: row;
+}
+
+@mixin flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin center {
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin container {
+    width: 100%;
+    height: 100%;
+    padding: 48px;
+    border: 5px solid white;
+    border-radius: 20px;
+    background-color: $color-light-blue;
+}

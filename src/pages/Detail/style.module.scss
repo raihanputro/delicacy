@@ -1,0 +1,116 @@
+@import '../../styles/base.scss';
+
+.container {
+    @include container;
+
+    .cardContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        .card {
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            background-color: $color-light-blue;
+            border: 5px solid white;
+            border-radius: 19.42px;
+            padding: 20px;
+            margin-top: 2%;
+            width: 623.7px;
+            height: fit-content;
+
+            .mealDesc {
+                color: $color-grey;
+
+                .mealIntro {
+
+                    .mealName {
+                        font-size: 20px;
+                        padding-bottom: 10px;
+                        font-family: $font-archivo;
+                    }
+    
+                    .mealIns {
+                        font-family: $font-roboto;
+                        font-weight: 400;
+                        font-size: 13.21px;
+                        line-height: 16.34px;
+                        width: 100%;
+                        max-width: 371px;
+                        height: 100%;
+                        display: block;/* or inline-block */
+                        text-overflow: ellipsis;
+                        word-wrap: break-word;
+                        overflow: hidden;
+                        max-height: 303px;
+                        line-height: 1.8em;
+                    }
+                }
+
+                .mealIngContainer {
+                    margin-top: 5%;
+
+                    h1 {
+                        font-family: $font-archivo;
+                        font-size: 19.42px;
+                        line-height: 26.16px;
+                        color: $color-light-grey;
+                        margin-bottom: 3%;
+                    }
+
+                    .mealIngVarious {
+                        display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+                        gap: 20px;
+
+                        .mealIng {
+                            display: flex;
+                            flex-direction: row;
+                            gap: 10px;
+
+                            img {
+                                width: 40px;
+                                height: 40px;
+                                padding: 7px;
+                                border: 1px solid white;
+                                border-radius: 7.03px;
+                            }
+
+                            .mealMea {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: space-around;
+
+                                h3 {
+                                    font-family: $font-roboto;
+                                    font-size: 10.551px;
+                                    font-weight: 500;
+                                    line-height: 12.36px;
+                                }
+    
+                                p {
+                                    font-family: $font-roboto;
+                                    font-weight: 500;
+                                    font-size: 8.12px;
+                                    line-height: 9.52px;
+                                    color: $color-light-grey;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .mealImg {
+                transform: rotate(360deg);
+                position: absolute;
+                top: 11%;
+                left: 70%;
+                width: 400px;
+                height: 400px;
+            }
+        }
+    }
+}
+
